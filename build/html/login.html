@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<style type="text/css">
+    html { margin: 0;
+        padding: 0;
+        background: url(../image/bg001.jpg) no-repeat center center;
+        background-size: 100% 100%;
+    }
+    .loginStyle {
+        width: 600px;
+        height: 500px;
+        margin: 200px auto;
+        float: right;
+    }
+    .loginStyle input {
+        display: block;
+        margin-bottom: 20px;
+        width: 200px;
+        height: 30px;
+        border-radius: 4px;
+        padding-left: 5px;
+        background: #000000;
+        border: 1px solid yellow;
+        color: #ffffff;
+    }
+    button {
+        cursor: pointer;
+    }
+</style>
+<body>
+<div class="loginStyle">
+    <input type="text" id="firstInput" placeholder="输入账号" value="6048"/>
+    <input type="password" id="password" placeholder="输入密码"/>
+    <button>登录</button>
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../js/momo.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //进行设置//修改配置名
+        momo.baseURL = "http://law-test.heylon.cn:8080/";
+
+        $("button").on('click', submit);
+        //添加键盘事件
+
+        $(document).on("keydown", function (data) {
+            console.log("keydown1");
+            if (data.keyCode == 13) {//确认操作
+                submit();
+            }
+        });
+
+        function submit() {
+            momo.sendPost({account: $("#firstInput").val(), password: $("#password").val()}, "laws/account/login", function (data) {
+                if (data.data.accessToken !== null && data.data.accountName !== null) {
+                    sessionStorage.setItem("userID", data.data.accessToken);
+                    sessionStorage.setItem("userName", data.data.accountName);
+                    sessionStorage.setItem("departmentID", data.data.orgId);
+                    sessionStorage.setItem("departmentName", data.data.orgName);
+                    sessionStorage.setItem("isMaster", data.data.master);
+                    if (data.data.master) location.href = "./contractCenter.html?tabIndex=0";
+                    else location.href = "./contractCenter.html?tabIndex=1";
+                } else {
+                    alert("请正确输入账号密码");
+                }
+            });
+        }
+
+        //全选账号
+        $("#firstInput").select();
+    })
+
+</script>
+</html>

@@ -1,0 +1,37 @@
+body{}
+	a{text-decoration:none;}
+  /*选人控件样式*/
+  #contract_person{background:#fff;}
+#contract_person .contract_person_search{position:relative;}
+#contract_person .contract_person_search img{position:absolute;top:16px;left:215px;}
+#contract_person .contract_person_search img:hover{cursor:pointer;}
+
+  #contract_person .contract_person_search .person_input_search{width:200px;height:30px;
+margin:10px  10px;border-radius:4px;padding:0 23px 0 3px ;
+/*background:url("${ctx}/ueditor/images/search.png") no-repeat    right;*/}
+  /*合同状态*/
+#contract_person .contract_dept_type{width:100%;}
+#contract_person .contract_dept_type .cont_state_title{padding-left:15px;}
+#contract_person .contract_dept_type ul{width:98%;margin:0 auto;overflow:auto;margin-top:5px;}
+#contract_person .contract_dept_type ul .cont_state_name{float:left;padding-top:4px;}
+#contract_person .contract_dept_type ul li{float:left;margin:2px 2px;font-size:15px;line-height:22px;
+ padding:2px 10px;border-radius:6px;}
+#contract_person .contract_dept_type ul li:hover{cursor:pointer;}
+.on{color:#fafafa;}
+
+	/*选人列表 */
+#contract_person_list{ width:100%;height:450px;}
+#contract_person_list h1{font-size:13px;margin:5px 10px;}
+#contract_person_list .contract_left{width:25%;height:415px;float:left;overflow:auto;border:1px solid #ddd;}
+#contract_person_list .contract_right{width:73%;height:415px;float:left;overflow:auto;border:1px solid #ddd;border-left:0;}
+#contract_person_list .contract_right ul{width:100%;border-bottom:1px solid #ddd;overflow:auto;line-height:30px;}
+#contract_person_list .contract_right ul li{float:left;width:43%;text-align:center;position:relative;}
+#contract_person_list .contract_right ul li input{cursor:pointer;float:left;margin:10px 0 0 45px;}
+
+.footer{width:98%;margin-top:10px;border:1px solid red;}
+.footer .footer_right{width:200px;}
+.footer .footer_button {border:1px solid #ddd;display:block;width:85px;line-height:30px;float:left;text-align:center;
+text-decoration:none;border-radius:4px;background:#fff;color:#242424;margin-left:10px;}
+.footer .right{background:#EA0605;color:#fff;}
+
+ /*选人控件样式end */

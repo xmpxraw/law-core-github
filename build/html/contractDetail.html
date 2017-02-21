@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新建合同</title>
+</head>
+<link rel="stylesheet" href="../css/momo.css"/>
+<link rel="stylesheet" href="../css/contractDetail.css"/>
+<link rel="stylesheet" href="../plugin/jqueryUI/jquery-ui.css">
+<link rel="stylesheet" href="../plugin/selectPeople/single/css/zTreeStyle/zTreeStyle.css">
+
+<body onload="onLoad()">
+<section id="m_maskBox"><span id="m_maskLeft"></span><span id="m_maskRight"></span></section>
+<section class="m_left" id="m_left">
+    <div class="m_title">
+        <a href="">
+            <div class="m_item"><img src="../image/icon00004.png">返回应用中心</div>
+        </a>
+    </div>
+    <div class="menuGroup"></div>
+</section>
+<section id="m_right">
+    <div class="m_title">
+        <a class="m_titlePath"></a>
+        <span class="m_titleArrow"></span> <span class="m_titleName"></span>
+    </div>
+    <div class="m_container">
+        <section id="tabBar" class="tabBar">
+            <span class="item">基本信息</span><span class="item itemRight">附件</span><span class="item stampTab">盖章列表</span><span class="item fileTab">归档列表</span><span class="item progressTab">流程概览</span>
+        </section>
+        <!--基本信息-->
+        <section class="tabBox " id="tabBox0">
+            <!-- 模板位置 -->
+            <script id="test2" type="text/template">
+                <option value="<%=rate%>" data-name=<%=name%>> <%=name%>
+                </option>
+            </script>
+            <script id="categoryTmp" type="text/template">
+                <option value="<%=code%>" data-name=<%=name%>> <%=name%>
+                </option>
+            </script>
+            <!-- 模板位置结束 --><!--组合条件筛选-->
+            <div class="itemGroup">
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="itemName">发起人</div>
+                        <div class="itemValue">
+                            <input type="text" id="d_accessToken" class="checkDesc readOnly" data-txt="发起人" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="itemName">发起部门</div>
+                        <div class="itemValue">
+                            <input type="text" id="d_accessToken1" maxlength="20" class="checkDesc readOnly" data-txt="发起部门" disabled="disabled">
+                        </div>
+                    </div>
+
+                    <div class="item hidden contractIdNumItem">
+                        <div class="itemName">合同编号</div>
+                        <div class="itemValue">
+                            <input type="text" class="readOnly" id="d_contractIdNum" disabled="disabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="itemName">合同名称</div>
+                        <div class="itemValue">
+                            <input type="text" id="d_contractName" class="checkDesc" data-txt="合同名称">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <!--Momo-->
+                        <div class="itemName">是否框架协议</div>
+                        <div class="itemValue">
+                            <select id="d_isMakeUp1">
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="itemName">是否补充协议</div>
+                        <div class="itemValue">
+                            <select id="d_isMakeUp">
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow foldItem">
+                    <div class="item">
+                        <div class="itemName">原合同编号</div>
+                        <div class="itemValue">
+                            <input type="text" id="d_oldContractCode" maxlength="20">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="itemName">原合同金额</div>
+                        <div class="itemValue">
+                            <input type="number" id="d_oldContractMoney">
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="itemRow">
+                    <div class="item" id="clickChooseRequist">
+                        <div class="itemName">申购人</div>
+                        <div class="itemValue">
+                            <input type="text" id="d_requisitionerId" maxlength="20" class="checkDesc" data-txt="申购人" readonly="readonly">
+                        </div>
+                        <div class="selectBox" id="d_requisitionerId_selectBox"></div>
+                    </div>
+                    <div class="item">
+                        <div class="xm_noNessItemName">申购部门</div>
+                        <div class="itemValue">
+                            <input type="text" class="m_exceptCheck readOnly" readonly="readonly" id="d_purchaseDepartment">
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="itemName">我方主体</div>
+                        <div class="d_ourSelfItem">
+                            <input type="text" id="d_selfMainBodyName" maxlength="50" class="checkDesc" data-txt="我方主体">
+
+                            <div class="selectBox" id="d_selfMainBodyName_selectBox"></div>
+                        </div>
+                    </div>
+                    <div class="item d_moreSelfItem">
+                        <div class="itemName hideStar">我方附属主体</div>
+                        <div class="d_selfMoreGroup" id="d_selfMoreGroupId">
+                            <input type="text" id="d_moreSelfMainBodyIds" maxlength="50" data-txt="我方附属主体">
+
+                            <div class="selectBox" id="d_moreSelfMainBodyIds_selectBox"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="itemName">对方主体</div>
+                        <div class="d_ourSelfItem">
+                            <input type="text" id="d_otherMainBodyName" class="checkDesc" data-txt="对方主体">
+
+                            <div class="selectBox" id="d_otherMainBodyName_selectBox"></div>
+                        </div>
+                    </div>
+                    <div class="item d_moreSelfItem">
+                        <div class="itemName hideStar">对方附属主体</div>
+                        <div class="d_selfMoreGroup" id="d_moreSelfItemId">
+                            <input type="text" id="d_otherSelfMainBodyIds" maxlength="50" data-txt="对方附属主体">
+
+                            <div class="selectBox" id="d_otherSelfMainBodyIds_selectBox"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="itemName">收付方向</div>
+                        <div class="itemValue">
+                            <select id="d_paymentType">
+                                <option value="1">付款</option>
+                                <option value="2">收款</option>
+                                <option value="3">不涉及金额</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="itemName">合同金额</div>
+                        <div class="itemValue">
+                            <input id="d_contractMoney" class="checkDesc" data-txt="合同金额" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                        </div>
+                    </div>
+                    <div class="item tocontractBgImg">
+                        <div class="itemName">币种，汇率</div>
+                        <div class="itemValue">
+                            <!-- <input type="text" id="d_exchangeRate"> -->
+                            <input type="text" placeholder="汇率" disabled="disabled" class="exchangeRateInput" value="1"/>
+                            <span class="contractBgImg"></span> <select name="d_exchangeRate" id="d_exchangeRate">
+                            <option value="1" data-name="CNY">CNY</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="xm_noNessItemName xm_toBefore">折算人民币</div>
+                        <div class="itemValue">
+                            <input type="text" class="m_exceptCheck readOnly" readonly="readonly" id="d_Conversion">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="xm_noNessItemName">大写金额</div>
+                        <div class="itemValue">
+                            <input type="text" class="m_exceptCheck chineseNum readOnly" readOnly="readOnly">
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow projectBgImg">
+                    <div class="item">
+                        <!--momo-->
+                        <div class="itemName">项目</div>
+                        <div class="itemValue">
+                            <select id="d_paymentType1">
+                                <option value="0">非项目类</option>
+                                <option value="1">关键行动六</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="contractBgImg"></span>
+                    <div class="item">
+                        <!--momo-->
+                        <div class="itemName">类目</div>
+                        <div class="itemValue">
+                            <select id="d_paymentType2">
+                                <!-- <option value="0"></option> -->
+                                <option value="-1"></option>
+                            </select> <select id="d_otherpaymentType2">
+                            <option value="-1"></option>
+                            <option value="keyaction1" data-name="中国市场整体IT规划委员会-日常费用">中国市场整体IT规划委员会-日常费用</option>
+                            <option value="keyaction2" data-name="中国市场整体IT规划委员会-有形资 产-非生产设备">中国市场整体IT规划委员会-有形资产-非生产设备</option>
+                            <option value="keyaction9" data-name="中国市场整体IT规划委员会-无形资产购置">中国市场整体IT规划委员会-无形资产购置</option>
+                            <option value="keyaction3" data-name="外部平台委员会-日常费用">外部平台委员会-日常费用</option>
+                            <option value="keyaction4" data-name="外部平台委员会-有形资产-非生产设备">外部平台委员会-有形资产-非生产设备</option>
+                            <option value="keyaction10" data-name="外部平台委员会-无形资产购置">外部平台委员会-无形资产购置</option>
+                            <option value="keyaction5" data-name="员工平台委员会-日常费用">员工平台委员会-日常费用</option>
+                            <option value="keyaction6" data-name="员工平台委员会-有形资产-非生产设备">员工平台委员会-有形资产-非生产设备</option>
+                            <option value="keyaction11" data-name="员工平台委员会-无形资产购置">员工平台委员会-无形资产购置</option>
+                            <option value="keyaction7" data-name="数据委员会-日常费用">数据委员会-日常费用</option>
+                            <option value="keyaction8" data-name="数据委员会-有形资产-非生产设备">数据委员会-有形资产-非生产设备</option>
+                            <option value="keyaction12" data-name="数据委员会-无形资产购置 ">数据委员会-无形资产购置</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemRow">
+                    <div class="item xm_changed_expiryWidth">
+                        <div class="itemName">合同有效期</div>
+                        <div class="itemValue d_expirWidth">
+                            <input id="d_expiryDateStartstr" class="m_expiryDateStart checkDesc" data-txt="合同有效期">
+                            <span class="contractBgImg"></span>
+                            <input id="d_expiryDateEnd" class="checkDesc" data-txt="合同有效期">
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="itemRow">
+                    <div class="item">
+                        <div class="itemName">签约背景</div>
+                        <div class="itemValue">
+                            <textarea id="d_signContext" maxlength="1000" data-txt="签约背景" class="checkDesc"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                <div class="submitBtn">下一步</div>
+                <div class="m_resetBtn">重置</div>
+            </div>
+        </section>
+        <!--附件--><!-- 历史版本模版 -->
+        <script type="text/template" id="viewHistoryTemp">
+            <section class="listItem">
+                <p class="hv_list_detail">
+                    <span class="hv_list_detailLeft"><%=label%></span>
+                    <span class="hv_list_detailCenter"><%=createTime%></span>
+                    <span class="hv_list_detailRight blueColor">
+                            <a href="<%=url%>"></a>下载</a>
+                          </span>
+                </p>
+            </section>
+        </script>
+        <!-- 历史版本模版结束 -->
+        <section class="tabBox " id="tabBox1">
+            <section class="group" id="contractText">
+                <div class="title">
+                    <div class="titleName">合同文本</div>
+                    <div class="titleHandle">
+                            <span class="fileMask">
+                            上传
+                            <input type="file" class="selectFile" name="上传文本">
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <section class="group" id="mianAttachment">
+                <div class="title">
+                    <div class="titleName">合同附件</div>
+                    <div class="titleHandle">
+                        <div class="deleteAll cursorPointer delectStatus">批量删除</div>
+                        <span class="fileMask">
+                            上传
+                            <input type="file" class="selectFile" name="上传文本">
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <section class="group" id="otherAttachment">
+                <div class="title">
+                    <div class="titleName">其他附件</div>
+                    <div class="titleHandle">
+                        <div class="deleteAll cursorPointer">批量删除</div>
+                        <span class="fileMask">
+                            上传
+                            <input type="file" class="selectFile" name="上传文本">
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <script id="attackTemp" type="text/template">
+                <div class="item">
+                    <input type="checkbox" class="checkRadio">
+
+                    <div class="itemIcon"><img src="../image/icon00047.png"></div>
+                    <div class="itemName" data-id="<%=id%>">
+                        <%=name%>
+                    </div>
+                    <div class="itemSize">
+                        <%=size%>
+                    </div>
+                    <div class="itemHandleGroup">
+                        <div class="handleBtn editBtn">
+                            <a>编辑</a>
+                        </div>
+                        <div class="handleBtn deleteBtn">删除</div>
+                        <div class="handleBtn downLoadBtn statusBtn" data-id=<%=id%>>下载</div>
+                    </div>
+                </div>
+            </script>
+            <section class="btnGroup">
+                <div class="submitBtn cursorPointer">提交</div>
+                <div class="saveBtn cursorPointer">保存</div>
+            </section>
+        </section>
+        <!--盖章列表-->
+        <section class="tabBox " id="tabBox2">
+            <section class="m_table" id="m_table">
+                <div id="momoTable0"></div>
+            </section>
+        </section>
+        <!--归档列表-->
+        <section class="tabBox " id="tabBox3">
+            <section class="m_table" id="m_table">
+                <div id="momoTable1"></div>
+            </section>
+        </section>
+        <!--流程概览-->
+        <section class="tabBox" id="tabBox4">
+            <section class="viewTabBar">
+                <span class="item active">流程图</span><span class="item ">线性图</span>
+            </section>
+            <section class="viewBox" id="view0">
+                <iframe id="iframe1">流程图区域</iframe>
+            </section>
+            <section class="viewBox" id="view1">
+                <div class="nodeLine"></div>
+                <div class="nodeGroup">
+                    <div class="operationBox">
+                        <textarea class="operationReply"></textarea>
+
+                        <div class="operationBtn">回复</div>
+                    </div>
+                    <div id="statusEnd" class="nodeItem">
+                        <div class="nodeLine2"></div>
+                        <div class="nodeTime">
+                            <div class="endTime">
+                                <div class="day"></div>
+                                <div class="time"></div>
+                            </div>
+                        </div>
+                        <div class="nodePoint">
+                            <div class="pointIcon" style="background-image: url('../image/icon00044.png')"></div>
+                            <div class="pointArrow"></div>
+                            <div class="pointName">结束</div>
+                        </div>
+                        <div class="poepleGroup">
+                            <div class="poepleItem opacityItem">
+                                <div class="poepleStatus">已通过</div>
+                                <div class="poepleName">赵铁柱</div>
+                                <div class="poepleDepartment">部门经理</div>
+                                <div class="remark"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <script id="nodeItemTemp" type="text/template">
+                        <div class="nodeItem" data-id="<%=itemId%>">
+                            <div class="nodeLine2"></div>
+                            <div class="nodeTime">
+                                <div class="endTime">
+                                    <div class="day">
+                                        <%=day%>
+                                    </div>
+                                    <div class="time">
+                                        <%=time%>
+                                    </div>
+                                </div>
+                                <div class="useTime">
+                                    <%=useTime%>
+                                </div>
+                            </div>
+                            <div class="nodePoint">
+                                <div class="pointIcon" style="<%=style%>"></div>
+                                <div class="pointArrow"></div>
+                                <div class="pointName">
+                                    <%=nodeName%>
+                                </div>
+                            </div>
+                            <div class="poepleGroup">
+                                <div class="poepleItem" data-id="<%=peopleId%>">
+                                    <div class="poepleStatus" style="background-color: <%=nodeColor%>">
+                                        <%=status%>
+                                    </div>
+                                    <div class="poepleName">
+                                        <%=name%>
+                                    </div>
+                                    <div class="poepleDepartment">
+                                        <%=department%>
+                                    </div>
+                                    <div class="poepleBtn" style="display: <%=display%>">催办</div>
+                                    <div class="dialogFoldBtn" style="display: <%=display1%>">展开</div>
+                                    <div class="remark">
+                                        <%=remark%>
+                                    </div>
+                                    <div class="dialogBox"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                    <script id="peopleTemp0" type="text/template">
+                        <div class="poepleItem" data-id="<%=peopleId%>">
+                            <div class="poepleStatus">
+                                <%=status%>
+                            </div>
+                            <div class="poepleName">
+                                <%=name%>
+                            </div>
+                            <div class="poepleDepartment">
+                                <%=department%>
+                            </div>
+                            <div class="poepleTime">
+                                <%=time%>
+                            </div>
+                            <div class="poepleBtn" style="display: <%=display%>">催办</div>
+                            <div class="remark">
+                                <%=remark%>
+                            </div>
+                        </div>
+                    </script>
+                    <script id="peopleTemp1" type="text/template">
+                        <div class="poepleItem" data-id="<%=peopleId%>">
+                            <div class="poepleStatus">
+                                <%=status%>
+                            </div>
+                            <div class="poepleName">
+                                <%=name%>
+                            </div>
+                            <div class="poepleDepartment">
+                                <%=department%>
+                            </div>
+                            <div class="dialogFoldBtn">展开</div>
+                            <div class="poepleTime">
+                                <%=time%>
+                            </div>
+                            <div class="poepleBtn" style="display: <%=display%>">催办</div>
+                            <div class="remark">
+                                <%=remark%>
+                            </div>
+                            <div class="dialogBox"></div>
+                        </div>
+                    </script>
+                    <script type="text/template" id="commentTemp">
+                        <div class="dialogTextBox">
+                            <div class="dialogName">
+                                <%=name%>
+                            </div>
+                            <div class="dialogDepartment">
+                                <%=department%>
+                            </div>
+                            <div class="dialogTime">
+                                <%=day%> &nbsp;&nbsp; <%=time%>
+                            </div>
+                            <div class="dialogText">
+                                <%=text%>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+                <div class="HandleBox">
+                    <div class="otherHandle0">
+                        <div class="handleItem">
+                            <div class="handleItemName"><span class="handlePrefix">*</span>意见</div>
+                        </div>
+                    </div>
+                    <div class="otherHandle1">
+                        <div class="handleItem">
+                            <div class="handleItemName">
+                                <span class="handlePrefix">*</span>执行审批
+                                <input type="radio" name="audit" id="agree" value="同意"> <label for="agree">同意/继续</label>
+                                <input type="radio" name="audit" id="back" value="退回"> <label for="back">退回</label>
+                                <input type="radio" name="audit" id="stop" class="stop" value="中止">
+                                <label class="stop" for="stop">中止</label>
+
+                                <div class="pullRight">
+                                    <div class="rightBtn rightBtn0">移交审批</div>
+                                    <div class="rightBtn rightBtn1">添加审批人</div>
+                                    <!--<div class="rightBtn rightBtn2">添加知会人</div>-->
+                                </div>
+                            </div>
+                            <div class="handleItemName"><span class="handlePrefix">*</span>意见</div>
+                        </div>
+                    </div>
+                    <div class="otherHandle2">
+                        <div class="handleItem">
+                            <div class="handleItemName">
+                                <span class="handlePrefix">*</span>盖章份数： <input type="number">
+                            </div>
+                            <div class="handleItemName"><span class="handlePrefix">*</span>备注</div>
+                        </div>
+                    </div>
+                    <div class="otherHandle3">
+                        <div class="handleItemName">
+                            <span class="handlePrefix">*</span>归档编号： <input type="text">
+                            <span class="handlePrefix">*</span>归档份数： <input type="number">
+                        </div>
+                        <div class="handleItemName"><span class="handlePrefix">*</span>备注</div>
+                    </div>
+                    <div class="otherHandle4">
+                        <div class="handleItemName">
+                            <span class="handlePrefix">*</span>盖章份数： <input type="number">
+                        </div>
+                        <div class="handleItemName"><span class="handlePrefix">*</span>备注</div>
+                    </div>
+                    <textarea class="handleText"></textarea>
+
+                    <div class="handleBtnGroup">
+                        <div class="handleSubmitBtn">提交</div>
+                        <div class="addPeopleBtn">添加知会人</div>
+                    </div>
+                </div>
+                <!--待阅人 意见处理 -->
+                <div class="readbox" style="display: none;">
+                    <div class="readboxchild">
+                        <div class="readboxchildName"><span class="handlePrefix">*</span>意见</div>
+                        <textarea class="handleTextread"></textarea>
+                        <div class="readboxbutton">
+                            <div class="handleSubmitread">提交</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>
+<section class="historyVersion hidden">
+    <section class="hv_list">
+        <p class="hv_list_Title">
+            <span class="hv_list_TitleName">无法获取</span>
+            <span class="hv_list_TitleImg"><img src="../image/icon00045.png" alt=""></span>
+        </p>
+        <section class="listItem">
+            <p class="hv_list_detail">
+                <span class="hv_list_detailLeft">版本号</span> <span class="hv_list_detailCenter">修改日期</span>
+                <span class="hv_list_detailRight">操作</span>
+            </p>
+        </section>
+        <section class="hv_listContainer">
+            <!-- <section class="listItem">
+                <p class="hv_list_detail">
+                  <span class="hv_list_detailLeft">9.9</span>
+                  <span class="hv_list_detailCenter">2016.09.09</span>
+                  <span class="hv_list_detailRight blueColor">下载</span>
+                </p>
+            </section> -->
+        </section>
+    </section>
+</section>
+
+</body>
+<script src="../plugin/jqueryUI/jquery-1.10.2.js"></script>
+<script src="../plugin/jqueryUI/jquery-ui.js"></script>
+<script src="../plugin/selectPeople/single/layer/layer.js"></script>
+<script src="../plugin/selectPeople/single/js/jquery.ztree.core.js"></script>
+<script src="../js/momo.js"></script>
+<script src="../js/contractDetail.js"></script>
+
+</html>

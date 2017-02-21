@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>申购人页面</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/contract_person.css" type="text/css" rel="stylesheet"/>
+    <link href="css/common.css" type="text/css" rel="stylesheet"/>
+    <link href="css/zTreeStyle/zTreeStyle.css" type="text/css" rel="stylesheet"/>
+    <!--添加全部变量-->
+    <script type="text/javascript" charset="utf-8" src="../../../js/momo.js"></script>
+</head>
+<body>
+<div id="contract_person">
+    <div class="contract_person_search">
+        <input type="text" class="person_input_search"  autocomplete="on"/>
+        <img src="../../../image/icon00046.png" width="18" hegiht="18">
+    </div>
+    <div id="contract_person_list">
+        <h1>申购人列表</h1>
+
+        <div class="contract_left">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="contract_right">
+            <div>
+                <ul class='sel-head'>
+                    <li style="width:38%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;姓名</li>
+                    <li style="width:40%;">部门名称</li>
+                    <li style="width:20%;">是否在职</li>
+                </ul>
+            </div>
+            <div class='list-body'></div>
+        </div>
+        <div>
+            <div class="footer_right" style="text-align:right;">
+                <input type="button" class="footer_button" id="cancel" value="取 消" style="width:85px;line-height:30px;text-align:center;border-radius:4px;background:#ffffff;color:#242424;margin-top:10px;"/>
+                <input type="button" class="footer_button right" id="deter" value="确 定" style="width:85px;line-height:30px;text-align:center;border-radius:4px;background:#EA0605;color:#ffffff;margin:10px 20px;"/>
+                <input type="button" class="footer_button right" id="deter_search" value="确 定" style="width:85px;line-height:30px;text-align:center;border-radius:4px;background:#EA0605;color:#fff;margin:10px 20px;display:none;"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.ztree.core.js"></script>
+<script type="text/javascript" charset="utf-8" src="layer/layer.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/contract_person.js"></script>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <link href="css/common.css" type="text/css" rel="stylesheet" /> 
+    <link href="css/zTreeStyle/zTreeStyle.css" type="text/css" rel="stylesheet" /> 
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="layer/layer.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.ztree.core.js"></script>
+
+
+
+  <title>选择申购人-多选</title>
+ </head>
+ <body>
+  <div class="box">
+    <input type="text" class="person" id="person_name" placeholder="选择申购人"/>
+	<input type="text" class="dept" id="dept_name" placeholder="申购人部门"/>
+  
+  </div>
+
+
+<script>
+ $(function(){
+      $("#person_name").click(function(){
+			layer.open({
+				  type: 2,
+				  title: '选择申购人',
+				  area: ['800px', '650px'],
+				  //content: 'add_person1.html'
+				    content : 'contract_person.html'
+				});
+		}); 
+ });
+
+</script>
+
+ </body>
+</html>

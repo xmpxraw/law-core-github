@@ -1,0 +1,92 @@
+/*公共样式*/
+html { background-color: white; min-height: 100%; color: #6e6e6e; }
+html::-webkit-scrollbar { width: 0; }
+body { width: 1180px; height: 100%; margin: 0 auto; background-color: red; min-height: 100%; font-size: 14px; text-align: center; font-family: "Microsoft YaHei"; position: relative }
+.readOnly { background-color: #f5f5f5; }
+/*加载进度条*/
+#m_loadingBox { width: 100%; height: 100%; position: fixed; background-color: rgba(0, 0, 0, 0.1); top: 0; left: 0; z-index: 4 }
+#m_loadingBarBg { width: 50%; height: 40px; line-height: 40px; background-color: white; border-radius: 5px; box-shadow: 0 0 8px 1px; overflow: hidden; border: solid 1px gray; left: 25%; top: 40%; position: absolute }
+#m_loadingBar { width: 100%; height: 100%; background-color: darkgray; }
+#m_loadingText { color: #333333; position: absolute; top: 0; width: 100%; text-align: center }
+/*加载中动画*/
+#m_loading { display: none; position: fixed; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.1); width: 100%; height: 100%; }
+#m_loading img { width: 50px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+#m_tipBox { display: none; position: fixed; left: 50%; top: 50%; border: solid 1px gray; text-align: center; padding: 10px; border-radius: 4px; background-color: white; height: auto; max-width: 200px; box-shadow: 0 0 2px 1px; z-index: 4; transform: translate(-50%, -50%); }
+#m_tipBox span { position: absolute; top: 8px; }
+#m_tipBox div { text-align: left; text-indent: 18px }
+/*背景遮罩*/
+#m_maskBox { z-index: 0; width: 1180px; height: 100%; position: fixed; margin: 0 auto; }
+#m_maskBox span { margin: 0; padding: 0; }
+#m_maskLeft { border: solid 1px #DDDDDD; background-color: #F7F7F7; width: 176px; height: 100%; display: inline-block; }
+#m_maskRight { border: solid 1px #DDDDDD; border-left: none; background-color: #FDFDFD; width: 1001px; height: 100%; display: inline-block }
+/*侧边菜单栏样式*/
+#m_left { display: none }
+#m_left { border: solid 1px #DDDDDD; border-bottom: none; background-color: #F7F7F7; width: 176px; min-height: 100%; padding: 0; margin: 0; text-align: left; position: absolute; top: 0; margin-top: 90px; }
+#m_left .m_title, #m_right .m_title { height: 66px; position: relative; line-height: 66px; font-size: 14px; font-weight: bold; }
+/*#m_left .m_title::before, #m_right .m_title::before { content: ""; height: 1px; width: 100%; background-color: #EAEAEA; position: absolute; top: 0; left: 0 }*/
+#m_left .m_title::after, #m_right .m_title::after { content: ""; height: 1px; width: 100%; background-color: #EAEAEA; position: absolute; bottom: 0; left: 0 }
+#m_left .m_title .m_item, #m_left .menuGroup .m_item { padding-left: 40px; }
+#m_left .m_title .m_item img, #m_left .menuGroup .m_item img { margin-right: 5px; position: relative; top: 2px }
+#m_left .menuGroup { display: none }
+#m_left .menuGroup a { text-decoration: none; color: inherit; }
+#m_left .menuGroup .m_item { height: 40px; line-height: 40px; position: relative }
+#m_left .menuGroup .active { background-color: #ea0605; color: white; width: 178px; position: relative; left: -1px }
+/*#m_left .menuGroup .active::before { content: ""; height: 1px; width: 100%; background-color: #dddddd; position: absolute; top: 0; left: 0 }*/
+#m_left .menuGroup .m_xm_firstActive::before { display: none; }
+/*#m_left .menuGroup .active::after { content: ""; height: 1px; width: 100%; background-color: #dddddd; position: absolute; bottom: 0; left: 0 }*/
+.m_redPoint { display: none; position: absolute; left: 120px; background-color: #ea0605; height: 18px; width: 18px; line-height: 20px; color: white; padding: 2px; top: 9px; font-size: 12px; text-align: center; border-radius: 50%; }
+/*右边内容栏*/
+#m_right { display: none }
+#m_right { border: solid 1px #DDDDDD; border-left: none; border-bottom: none; background-color: white; width: 1001px; min-height: 100%; padding: 0 0 60px 0; margin: 90px 0 0 178px; text-align: left; position: absolute; }
+#m_right .m_title { padding-left: 30px }
+#m_right .m_container { padding: 0 30px }
+/*表单样式*/
+#m_table table { margin-top: 30px; border: 1px solid #DDDDDD; border-collapse: collapse; }
+#m_table th { height: 36px; background-color: #F5F5F5; position: relative; }
+#m_table td { border-top: 1px solid #DDDDDD; height: 60px; cursor: pointer; }
+#m_table .m_handleBtn { display: inline-block; margin: 0.1rem 0.1rem 0.1rem 0; padding: 0.2rem 0.2rem 0.2rem 0; }
+#m_table .m_handleBox { position: relative }
+#m_table .m_pageHandle { position: absolute; left: 0; top: 0; }
+#m_table .m_pageHandle div { display: inline-block; margin-right: 10px; padding: 0.6rem 0.7rem; border: 1px solid #DDDDDD; border-radius: 4px }
+#m_table .m_pageHandle .m_deleteAll { display: none }
+#m_table .m_pageGroup { text-align: right; margin: 30px 0 0; color: #337AB7 }
+#m_table .m_pageGroup div { cursor: pointer; display: inline-block; margin: 0; padding: 0.6rem 0.7rem; border: 1px solid #DDDDDD; border-right: none }
+#m_table .m_pageGroup div:nth-last-child(1) { border: none; padding-right: 0; color: #6e6e6e; }
+#m_table .m_pageGroup div:nth-child(1) { border-bottom-left-radius: 4px; border-top-left-radius: 4px; }
+#m_table .m_pageGroup div:nth-last-child(2) { border-right: 1px solid #DDDDDD; border-bottom-right-radius: 4px; border-top-right-radius: 4px; }
+#m_table .m_pageGroup .disabled { color: #6e6e6e; cursor: not-allowed; }
+#m_table .m_pageGroup .active { color: white; background-color: #EA0605; }
+/*表单为空*/
+.m_inputEmpty { border: 1px solid #ea0605 !important; }
+/*所有页面的头部*/
+/*.xm_topBG { position: fixed; width: 100%; height: 90px; left: 0; background-color: white; }*/
+.xm_top { width: 1180px; height: 90px; background: white; position: absolute; margin: 0 auto; text-align: left }
+.xm_top img { float: left; margin-left: 0; margin-top: 20px; }
+.xm_top span { margin-right: 10px; }
+.xm_top a { text-decoration: none; color: #6e6e6e; }
+.xm_top .xm_topInfo { float: right; line-height: 90px; margin-right: 20px; }
+.xm_top .xm_topTitle { font-size: 20px; display: inline-block; line-height: 90px; margin-left: 20px }
+.xm_footer p { width: 100%; height: 60px; line-height: 45px; background: #ffffff; position: fixed; bottom: -17px; left: 0; text-align: center; margin: 0; }
+/*提示操作栏样式*/
+.m_msgBoxBG { display: none; }
+.m_msgBox { display: none; }
+.m_msgBoxBG { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background-color: black; opacity: 0.2; z-index: 99 }
+.m_msgBox { width: 300px; height: 120px; background-color: white; border-radius: 6px; position: fixed; top: 30%; left: 50%; transform: translate(-50%, 50%); z-index: 100 }
+.m_msgText { text-align: center; width: 100%; padding: 1.5rem 10%; color: #313131; white-space: pre-line; box-sizing: border-box }
+.m_msgBtnList { margin: 0 8%; text-align: center; }
+.m_msgBtnCancel { border-radius: 4px; display: inline-block; width: 60px; margin: 0 4%; text-align: center; font-size: 14px; padding: 8px; background-color: #D7D7D7; color: #666666 }
+.m_msgBtnEnter { cursor: pointer; border-radius: 4px; display: inline-block; width: 60px; margin: 0 4%; text-align: center; font-size: 14px; padding: 8px; background-color: #ea0605; color: white }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

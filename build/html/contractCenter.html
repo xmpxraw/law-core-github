@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>合同中心</title>
+</head>
+<link rel="stylesheet" href="../css/momo.css"/>
+<link rel="stylesheet" href="../css/contractCenter.css"/>
+<link rel="stylesheet" href="../plugin/jqueryUI/jquery-ui.css">
+<link rel="stylesheet" href="../plugin/selectPeople/single/css/zTreeStyle/zTreeStyle.css">
+
+<body onload="onLoad()">
+<section id="m_maskBox"><span id="m_maskLeft"></span><span id="m_maskRight"></span></section>
+<section class="m_left" id="m_left">
+    <div class="m_title">
+        <a href=""><div class="m_item"><img src="../image/icon00004.png">返回应用中心</div></a>
+    </div>
+    <div class="menuGroup"></div>
+</section>
+<section id="m_right">
+    <div class="m_title">合同中心</div>
+
+    <div class="m_container">
+
+        <!--tab表单-->
+        <section id="tabBar" class="tabBar">
+            <span class="item active allList">合同列表</span><span class="item"><div class='m_redPoint'></div>我的待办</span><span class="item">我的已办</span><span class="item">我的申请</span><span class="item">我的已阅</span><span class="item">我的消息</span><span class="item">我的待阅</span>
+        </section>
+
+        <!--合同列表-->
+        <section class="tabBox " id="tabBox0">
+            <!--关键字搜索-->
+            <section class="keyWord">
+                <div class="box">
+                    <input type="text" id="search" placeholder="请输入关键字"><img src="../image/icon00046.png"><span>搜索</span>
+                </div>
+            </section>
+
+            <!--组合条件筛选-->
+            <section class="condition">
+                <div class="title">
+                    <div class="text">高级筛选</div>
+                    <div class="tip">展开</div>
+                </div>
+
+                <div class="itemGroup">
+                    <div class="itemRow">
+                        <div class="item">
+                            <div class="itemName">合同状态</div>
+                            <div class="itemValue">
+                                <select class="d_status">
+                                    <option value="">全部</option>
+                                    <option value="1">审批</option>
+                                    <option value="2">盖章</option>
+                                    <option value="3">归档</option>
+                                    <option value="4">生效</option>
+                                    <option value="5">过期</option>
+                                    <option value="6">作废</option>
+                                    <option value="7">中止</option>
+                                    <option value="8">解除</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">收付方向</div>
+                            <div class="itemValue">
+                                <select class="d_paymentType">
+                                    <option value="">全部</option>
+                                    <option value="1">付款</option>
+                                    <option value="2">收款</option>
+                                    <option value="3">不涉及金额</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">费用类型</div>
+                            <div class="itemValue"><input type="text" class="d_costTypeName"></div>
+                        </div>
+                    </div>
+                    <div class="itemRow">
+                        <div class="item">
+                            <div class="itemName">我方主体</div>
+                            <div class="itemValue"><input type="text" class="d_selfMainBodyName"></div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">对方主体</div>
+                            <div class="itemValue"><input type="text" class="d_otherMainBodyName"></div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">申购人</div>
+                            <div class="itemValue"><input type="text" class="d_requisitionerName"></div>
+                        </div>
+                    </div>
+                    <div class="itemRow">
+                        <div class="item">
+                            <div class="itemName">申购部门</div>
+                            <div class="itemValue"><input type="text" class="d_requisitionerDepa"></div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">发起人</div>
+                            <div class="itemValue"><input type="text" class="d_createBy"></div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">发起部门</div>
+                            <div class="itemValue"><input type="text" class="d_appliDepa"></div>
+                        </div>
+                    </div>
+                    <div class="itemRow">
+                        <div class="item">
+                            <div class="itemName">合同有效时间</div>
+                            <div class="itemValue">
+                                <input id="d_expiryDateStartstr"><span>至</span><input id="d_expiryDateEndstr">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">发起时间</div>
+                            <div class="itemValue">
+                                <input id="d_createDatebegin"><span>至</span><input id="d_createDateend">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="itemName">合同金额</div>
+                            <div class="itemValue">
+                                <input id="d_minMoney" type="number"><span>至</span><input id="d_maxMoney" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn">
+                    <div class="submitBtn">筛选</div>
+                    <div class="resetBtn">重置</div>
+                </div>
+            </section>
+            <div class="loadBtn">
+                <div class="load">导出</div>
+            </div>
+
+            <!--数据表格-->
+            <section class="m_table" id="m_table">
+                <div id="momoTable0"></div>
+            </section>
+        </section>
+
+        <!--我的待办-->
+        <section class="tabBox " id="tabBox1">
+            <section class="m_table" id="m_table">
+                <div id="momoTable1"></div>
+            </section>
+        </section>
+
+        <!--我的已办-->
+        <section class="tabBox " id="tabBox2">
+            <!--搜索条件-->
+            <section class="searchBox">
+                <div class="item ">
+                    <div class="itemName">发起人：</div>
+                    <div class="itemValue"><input type="text" class="initiator" readonly></div>
+                </div>
+                <div class="item">
+                    <div class="itemName">发起时间：</div>
+                    <div class="itemValue">
+                        <input type="text" class="startTime" readonly> 至 <input type="text" class="endTime" readonly>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <div class="searchBtn">筛选</div>
+                    <div class="resetBtn">重置</div>
+                </div>
+            </section>
+
+            <!--表格-->
+            <section class="m_table" id="m_table">
+                <div id="momoTable2"></div>
+            </section>
+        </section>
+
+        <!--我的申请-->
+        <section class="tabBox " id="tabBox3">
+            <!--搜索条件-->
+            <section class="searchBox">
+                <div class="item">
+                    <div class="itemName">发起时间：</div>
+                    <div class="itemValue">
+                        <input type="text" class="startTime" readonly> 至 <input type="text" class="endTime" readonly>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <div class="searchBtn">筛选</div>
+                    <div class="resetBtn">重置</div>
+                </div>
+            </section>
+
+            <!--表格-->
+            <section class="m_table" id="m_table">
+                <div id="momoTable3"></div>
+            </section>
+        </section>
+
+        <!--我的已阅-->
+        <section class="tabBox " id="tabBox4">
+            <!--搜索条件-->
+            <section class="searchBox">
+                <div class="item">
+                    <div class="itemName">发起人：</div>
+                    <div class="itemValue"><input type="text" class="initiator" readonly></div>
+                </div>
+                <div class="item">
+                    <div class="itemName">发起时间：</div>
+                    <div class="itemValue">
+                        <input type="text" class="startTime" readonly> 至 <input type="text" class="endTime" readonly>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <div class="searchBtn">筛选</div>
+                    <div class="resetBtn">重置</div>
+                </div>
+            </section>
+            <!--表格-->
+            <section class="m_table" id="m_table">
+                <div id="momoTable4"></div>
+            </section>
+        </section>
+
+        <!--我的待阅-->
+        <section class="tabBox " id="tabBox6">
+            <!--搜索条件-->
+            <section class="searchBox">
+                <div class="item">
+                    <div class="itemName">发起人：</div>
+                    <div class="itemValue"><input type="text" class="initiator" readonly></div>
+                </div>
+                <div class="item">
+                    <div class="itemName">发起时间：</div>
+                    <div class="itemValue">
+                        <input type="text" class="startTime" readonly> 至 <input type="text" class="endTime" readonly>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <div class="searchBtn">筛选</div>
+                    <div class="resetBtn">重置</div>
+                </div>
+            </section>
+            <!--表格-->
+            <section class="m_table" id="m_table">
+                <div id="momoTable6"></div>
+            </section>
+        </section>
+
+        <!--我的催办-->
+        <section class="tabBox" id="tabBox5">
+            <!--搜索条件-->
+            <section class="searchBox">
+                <div class="item">
+                    <div class="itemName">收件人：</div>
+                    <div class="itemValue"><input type="text" class="initiator" readonly></div>
+                </div>
+                <div class="btnBox">
+                    <div class="resetBtn">重置</div>
+                </div>
+            </section>
+            <!--表格-->
+            <section class="m_table" id="m_table">
+                <div id="momoTable5"></div>
+            </section>
+        </section>
+    </div>
+</section>
+
+</body>
+<script src="../plugin/jqueryUI/jquery-1.10.2.js"></script>
+<script src="../plugin/jqueryUI/jquery-ui.js"></script>
+<script src="../plugin/selectPeople/single/layer/layer.js"></script>
+<script src="../plugin/selectPeople/single/js/jquery.ztree.core.js"></script>
+<script src="../js/momo.js"></script>
+<script src="../js/contractCenter.js"></script>
+</html>

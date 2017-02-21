@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="test" style="position: fixed;right: 200px;background-color: #007fff"></div>
+<link rel="stylesheet" href="../css/momo.css"/>
+<script src="../js/momo.js"></script>
+<script src="../js/jquery-1.12.3.min.js"></script>
+<script>
+    console.log("aa");
+    momo.ctrlMsgBox("show", "#test", "亲，草稿删除后\r\n不可恢复噢~", function () {
+
+    }, function () {}, true)
+</script>
+</body>
+</html>
